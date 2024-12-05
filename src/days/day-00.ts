@@ -6,11 +6,11 @@ export class Day extends BaseDay<Input, number, number> {
     return input.split('\n');
   }
 
- partOne(): number {
+ partOne() {
     return 42;
   }
 
-  partTwo(): number {
+  partTwo() {
     return 42;
   }
 }
