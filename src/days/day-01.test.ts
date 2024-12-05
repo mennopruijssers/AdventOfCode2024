@@ -10,5 +10,4 @@ const example = `3   4
 
 dayRunner(Day, example, 11, 31);
 
-
 dayVerifier(1, 1151792, 21790168);

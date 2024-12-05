@@ -3,3 +3,4 @@
 /.eslintcache
 /coverage
 .DS_Store
+/tsconfig.tsbuildinfo
