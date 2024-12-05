@@ -11,7 +11,7 @@ export class Day extends BaseDay<Input, number, number> {
     return [left, right];
   }
 
-  async partOne(): Promise<number> {
+   partOne(): number {
     const left = this.input[0].sort((a, b) => a - b);
     const right = this.input[1].sort((a, b) => a - b);
 
@@ -19,7 +19,7 @@ export class Day extends BaseDay<Input, number, number> {
     return differences.reduce((sum, n) => sum + n);
   }
 
-  async partTwo(): Promise<number> {
+  partTwo(): number {
     const [left, right] = this.input;
 
     const rightMap = right.reduce<Record<number, number>>((map, n) => {

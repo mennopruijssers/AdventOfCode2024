@@ -19,12 +19,12 @@ export class Day extends BaseDay<Input, number, number> {
     return input.split('\n').map((line) => line.split(/ +/).map(Number));
   }
 
-  async partOne(): Promise<number> {
+  partOne() {
     const safe = this.input.filter(isSafe);
     return safe.length;
   }
 
-  async partTwo(): Promise<number> {
+  partTwo() {
     const safe = this.input.filter((line) => {
       if (isSafe(line)) return true;
 

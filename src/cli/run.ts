@@ -4,6 +4,7 @@
 
 import { assert } from 'console';
 import * as fs from 'fs/promises';
+import { DayConstructor } from '../day';
 
 async function main(): Promise<void> {
   const inputs = await fs.readdir('./inputs/');
@@ -28,17 +29,21 @@ async function main(): Promise<void> {
   const input = await fs.readFile(`./inputs/day-${paddedDay}.txt`, {
     encoding: 'utf-8',
   });
-  const DayType = (await import(`../days/day-${paddedDay}`)).default;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  const DayType = (await import(`../days/day-${paddedDay}`)).default as DayConstructor;
   const day = new DayType(input);
   assert(day);
   console.log('running part 1');
   console.time('part1');
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const output = await day.partOne();
   console.timeEnd('part1');
   day.printResultOne(output);
 
   console.log('running part 2');
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   console.time('part2');
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const output2 = await day.partTwo(output);
   console.timeEnd('part2');
   day.printResultTwo(output2);

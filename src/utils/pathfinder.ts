@@ -3,20 +3,20 @@
 import { Grid } from './grid';
 import { Point } from './types';
 
-type Opts<T> = {
+interface Opts<T> {
   grid: T[][];
   start: Point;
   isEnd: isEndFN<T>;
   isAllowed: (from: T, to: T) => boolean;
   calculateCost?: (from: T, to: T) => number;
-};
+}
 
 type isEndFN<T> = ({ point, value }: { point: Point; value: T }) => boolean;
-type Node<T> = {
+interface Node<T> {
   value: T;
   parent: Point | undefined;
   cost: number;
-};
+}
 
 function getPath(grid: Grid<Node<unknown>>, end: Point): Point[] {
   const path: Point[] = [];

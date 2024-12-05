@@ -2,10 +2,10 @@
 import { notEmpty } from './predicates';
 import { Point } from './types';
 
-export type Cell<T> = {
+export interface Cell<T> {
   point: Point;
   value: T;
-};
+}
 
 export class Grid<T> {
   public grid: T[][];
@@ -13,7 +13,7 @@ export class Grid<T> {
     this.grid = grid;
   }
 
-  getNeighbours(p: Point, diagonal: boolean = false): Point[] {
+  getNeighbours(p: Point, diagonal = false): Point[] {
     const adjacent: Point[] = [
       [-1, 0],
       [0, -1],

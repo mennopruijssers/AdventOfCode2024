@@ -6,11 +6,11 @@ export class Day extends BaseDay<Input, number, number> {
     return input.split('\n');
   }
 
-  async partOne(): Promise<number> {
+ partOne(): number {
     return 42;
   }
 
-  async partTwo(): Promise<number> {
+  partTwo(): number {
     return 42;
   }
 }

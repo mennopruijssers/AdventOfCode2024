@@ -7,7 +7,7 @@ export class Day extends BaseDay<Input, number, number> {
     return input.trim();
   }
 
-  async partOne(): Promise<number> {
+  partOne(){
     const matchAll = this.input.matchAll(/mul\((\d+),(\d+)\)/g);
 
     const matches = [...matchAll];
@@ -21,7 +21,7 @@ export class Day extends BaseDay<Input, number, number> {
     return results.reduce((sum, n) => sum + n, 0);
   }
 
-  async partTwo(): Promise<number> {
+  partTwo() {
     const matches = this.input.matchAll(/(mul|do|don't)\((?:(\d+),(\d+))?\)/g);
     let enabled = true;
 

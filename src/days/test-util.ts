@@ -1,6 +1,6 @@
 //istanbul ignore file: not covered by test
 import { beforeAll, beforeEach, describe, expect, it } from '@jest/globals';
-import { BaseDay } from '../day';
+import { BaseDay, DayConstructor } from '../day';
 import * as fs from 'fs/promises';
 
 type ValidatorFN<T> = (output: T) => void;
@@ -13,7 +13,7 @@ export function dayRunner<T1, T2>(
   let day: BaseDay<unknown, T1, T2>;
 
   describe(`given ${example}`, () => {
-    beforeEach(async () => {
+    beforeEach(() => {
       day = new DayType(example);
     });
 
@@ -39,7 +39,7 @@ export function dayRunner<T1, T2>(
 
 export function slowTest(fn: () => unknown, name?: string): void {
   //istanbul ignore next
-  if (process.env['ENABLE_SLOW_TESTS'] === '1') {
+  if (process.env.ENABLE_SLOW_TESTS === '1') {
     fn();
   }
   //istanbul ignore next
@@ -62,7 +62,9 @@ export function dayVerifier<T1, T2>(
       const input = await fs.readFile(`./inputs/day-${paddedDay}.txt`, {
         encoding: 'utf-8',
       });
-      const DayType = (await import(`../days/day-${paddedDay}`)).default;
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      const DayType = (await import(`../days/day-${paddedDay}`)).default as DayConstructor<unknown, T1, T2>;
 
       day = new DayType(input);
     });
