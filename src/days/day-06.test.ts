@@ -1,0 +1,19 @@
+import Day from './day-06';
+import { dayRunner, dayVerifier } from './test-util';
+
+const example = `
+....#.....
+.........#
+..........
+..#.......
+.......#..
+..........
+.#..^.....
+........#.
+#.........
+......#...`
+  .trim();
+
+dayRunner(Day, example, 41, 6);
+
+dayVerifier(6, 5177, 1686);
