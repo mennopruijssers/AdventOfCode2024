@@ -58,9 +58,9 @@ export function findShortestPath<T>({
       return getPath(grid, current);
     }
 
-    const neighbours = grid.getNeighbours(current);
-    neighbours.forEach((neighbour) => {
-      const node = grid.get(neighbour);
+    const neighbors = grid.getNeighbors(current);
+    neighbors.forEach((neighbor) => {
+      const node = grid.get(neighbor);
       if (!isAllowed(currentNode.value, node.value)) {
         return;
       }
@@ -70,8 +70,8 @@ export function findShortestPath<T>({
         node.cost = cost;
         node.parent = current;
 
-        if (!queue.some(({ x, y }) => x === neighbour.x && y === neighbour.y)) {
-          queue.push(neighbour);
+        if (!queue.some(({ x, y }) => x === neighbor.x && y === neighbor.y)) {
+          queue.push(neighbor);
         }
       }
     });

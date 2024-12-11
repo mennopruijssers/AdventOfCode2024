@@ -13,7 +13,7 @@ export class Grid<T> {
     this.grid = grid;
   }
 
-  getNeighbours(p: Point, diagonal = false): Point[] {
+  getNeighbors(p: Point, diagonal = false): Point[] {
     const adjacent: Point[] = [
       [-1, 0],
       [0, -1],
