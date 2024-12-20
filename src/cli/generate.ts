@@ -9,10 +9,22 @@ import * as copyPaste from 'copy-paste';
 async function main(): Promise<void> {
   const inputs = await fs.readdir('./inputs/');
 
-  const last = inputs.length === 0 ? 'day-00' : inputs.reverse()[0];
-  const nextDayNumber = parseInt(last.substring('day-'.length)) + 1;
-
+  let nextDayNumber: number;
+  const arg = process.argv[2];
+  if (!arg) {
+    throw new Error('Please provide a day number, "next", or "today" to generate a new day');
+  }
+  if (arg === 'next') {
+    const last = inputs.length === 0 ? 'day-00' : inputs.reverse()[0];
+    nextDayNumber = parseInt(last.substring('day-'.length)) + 1;
+  } else if (arg === 'today') {
+    const today = new Date().getDate();
+    nextDayNumber = today;
+  } else {
+    nextDayNumber = parseInt(arg);
+  }
   const nextDayString = nextDayNumber.toString().padStart(2, '0');
+
   console.log(`creating day ${nextDayNumber}`);
 
   await fs.writeFile(
