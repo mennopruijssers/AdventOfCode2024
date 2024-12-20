@@ -1,11 +1,13 @@
 // istanbul ignore file
 import { notEmpty } from './predicates';
-import { Point } from './types';
+import { getPointNeighbors, Point } from './types';
 
 export interface Cell<T> {
   point: Point;
   value: T;
 }
+
+
 
 export class Grid<T> {
   public grid: T[][];
@@ -14,22 +16,7 @@ export class Grid<T> {
   }
 
   getNeighbors(p: Point, diagonal = false): Point[] {
-    const adjacent: Point[] = [
-      [-1, 0],
-      [0, -1],
-      [1, 0],
-      [0, 1],
-      ...(diagonal
-        ? [
-            [-1, -1],
-            [1, -1],
-            [-1, 1],
-            [1, 1],
-          ]
-        : []),
-    ].map(([difX, difY]) => ({ x: p.x + difX, y: p.y + difY }));
-
-    return adjacent
+    return getPointNeighbors(p, diagonal)
       .map((point) => {
         const { x, y } = point;
         if (y < 0 || y >= this.grid.length) {
